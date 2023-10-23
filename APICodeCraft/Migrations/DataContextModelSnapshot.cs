@@ -72,9 +72,8 @@ namespace APICodeCraft.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Answer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Answer")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Question")
                         .IsRequired()

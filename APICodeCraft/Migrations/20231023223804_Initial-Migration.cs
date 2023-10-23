@@ -72,7 +72,7 @@ namespace APICodeCraft.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Question = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Answer = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Answer = table.Column<bool>(type: "bit", nullable: false),
                     SubtopicId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

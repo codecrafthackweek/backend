@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APICodeCraft.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231022213203_InitialMigration")]
+    [Migration("20231023223804_Initial-Migration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -75,9 +75,8 @@ namespace APICodeCraft.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Answer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Answer")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Question")
                         .IsRequired()
