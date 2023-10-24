@@ -18,5 +18,15 @@ namespace APICodeCraft.Services
         {
             return await _context.Contents.Include(c => c.Subtopic).ThenInclude(s => s.Course).ToListAsync();
         }
+
+        public async Task<Content> GetContentByIdAsync(int id)
+        {
+            var content = await _context.Contents
+                .Include(c => c.Subtopic)
+                .ThenInclude(s => s.Course)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            return content;
+        }
     }
 }
