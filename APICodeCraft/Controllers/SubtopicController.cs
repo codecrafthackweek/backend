@@ -23,5 +23,19 @@ namespace APICodeCraft.Controllers
             return Ok(subtopics);
 
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetSubtopicoById(int id)
+        {
+            try
+            {
+                var subtopic = await _subtopicService.GetSubtopicById(id);
+                return Ok(subtopic);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
