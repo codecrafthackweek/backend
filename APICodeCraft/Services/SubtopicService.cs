@@ -18,5 +18,16 @@ namespace APICodeCraft.Services
         {
             return await _context.Subtopics.Include(s => s.Course).ToListAsync();
         }
+
+        public async Task<Subtopic> GetSubtopicById(int id)
+        {
+            var subtopic = await _context.Subtopics
+                .Include(s => s.Course)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+            if (subtopic == null) { throw new Exception("Subtopic Not Found"); }
+
+            return subtopic;
+        }
     }
 }
