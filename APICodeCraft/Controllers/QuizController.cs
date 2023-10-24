@@ -22,5 +22,20 @@ namespace APICodeCraft.Controllers
             var quizs = await _quizService.GetAllQuizAsync();
             return Ok(quizs);
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Quiz>> GetQuizId(int id)
+        {
+            var quiz = await _quizService.GetQuizByIdAsync(id);
+            if (quiz == null)
+            {
+                return NotFound("Error quiz not found!");
+            }
+            else
+            {
+
+            return Ok(quiz);
+            }
+        }
     }
 }
