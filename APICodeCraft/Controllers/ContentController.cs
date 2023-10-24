@@ -1,4 +1,5 @@
 ﻿using APICodeCraft.Models;
+using APICodeCraft.Services;
 using APICodeCraft.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,5 +24,19 @@ namespace APICodeCraft.Controllers
             return Ok(contents);
         }
 
-    }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetContentById(int id)
+        {
+            var content = await _contentService.GetContentByIdAsync(id);
+            if (content == null)
+            {
+                return NotFound("Content not found!");
+            }
+            else
+            {
+                return Ok(content);            
+            }
+
+        }
+     }
 }
