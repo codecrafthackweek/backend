@@ -19,13 +19,6 @@ builder.Services.AddScoped<ISubtopicService, SubtopicService>();
 builder.Services.AddScoped<IContentService, ContentService>();
 builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<IQuizService, QuizService>();
-builder.Services.AddCors(options => options.AddPolicy(name: "CorsRule",
-    policy =>
-    {
-        //Alterar para a rota do flutter
-        //policy.WithOrigins("http://localhost:ROTA DO FLUTTER").AllowAnyMethod().AllowAnyHeader();
-        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
-    }));
 
 var app = builder.Build();
 
@@ -35,7 +28,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseCors("CorsRule");
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
