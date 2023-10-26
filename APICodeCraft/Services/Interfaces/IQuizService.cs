@@ -6,5 +6,6 @@ namespace APICodeCraft.Services.Interfaces
     {
         Task<IEnumerable<Quiz>> GetAllQuizAsync();
         Task<Quiz> GetQuizByIdAsync(int id);
+        Task<IEnumerable<Quiz>> GetQuizBySubtopicId(int SubtopicId);
     }
 }

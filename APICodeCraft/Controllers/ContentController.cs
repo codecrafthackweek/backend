@@ -38,5 +38,14 @@ namespace APICodeCraft.Controllers
             }
 
         }
-     }
+
+        [HttpGet("Subtopic/{id}")]
+        public async Task<ActionResult<IEnumerable<Content>>> GetContentBySubtopicIdAsync(int id)
+        {
+            var contents = await _contentService.GetContentBySubtopicIdAsync(id);
+            if (contents == null) return NotFound("Subtopic id not found!");
+            return Ok(contents);
+
+        }
+    }
 }

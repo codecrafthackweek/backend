@@ -1,4 +1,5 @@
 ﻿using APICodeCraft.Models;
+using APICodeCraft.Services;
 using APICodeCraft.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +37,15 @@ namespace APICodeCraft.Controllers
 
             return Ok(quiz);
             }
+        }
+
+        [HttpGet("Subtopic/{id}")]
+        public async Task<ActionResult<IEnumerable<Quiz>>> GetQuizBySubtopicId(int id)
+        {
+            var quizzes = await _quizService.GetQuizBySubtopicId(id);
+            if (quizzes == null) return NotFound("Subtopic id not found!");
+            return Ok(quizzes);
+
         }
     }
 }

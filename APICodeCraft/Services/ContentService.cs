@@ -28,5 +28,12 @@ namespace APICodeCraft.Services
 
             return content;
         }
+
+        public async Task<IEnumerable<Content>> GetContentBySubtopicIdAsync(int SubtopicId)
+        {
+            var contents = await _context.Contents.Include(c => c.Subtopic).ThenInclude(s => s.Course).Where(c => c.SubtopicId == SubtopicId).ToListAsync();
+
+            return contents;
+        }
     }
 }

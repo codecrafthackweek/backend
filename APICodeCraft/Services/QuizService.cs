@@ -23,5 +23,12 @@ namespace APICodeCraft.Services
         {
             return await _context.Quizs.Include(q => q.Subtopic).ThenInclude(s => s.Course).FirstOrDefaultAsync(q => q.Id == id);
         }
+
+        public async Task<IEnumerable<Quiz>> GetQuizBySubtopicId(int SubtopicId)
+        {
+            var quizs = await _context.Quizs.Include(q => q.Subtopic).ThenInclude(s => s.Course).Where(q => q.SubtopicId == SubtopicId).ToListAsync();
+
+            return quizs;
+        }
     }
 }
