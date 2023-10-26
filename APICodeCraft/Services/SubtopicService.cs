@@ -19,6 +19,13 @@ namespace APICodeCraft.Services
             return await _context.Subtopics.Include(s => s.Course).ToListAsync();
         }
 
+        public async Task<IEnumerable<Subtopic>> GetSubtopicByCourseId(int CourseId)
+        {
+            var subtopics = await _context.Subtopics.Include(s => s.Course).Where(s => s.CourseId == CourseId).ToListAsync();
+
+            return subtopics;
+        }
+
         public async Task<Subtopic> GetSubtopicById(int id)
         {
             var subtopic = await _context.Subtopics
