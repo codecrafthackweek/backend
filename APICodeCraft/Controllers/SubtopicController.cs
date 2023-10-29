@@ -18,30 +18,49 @@ namespace APICodeCraft.Controllers
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Subtopic>>> GetAllSubtopic()
-        { 
-            var subtopics = await _subtopicService.GetAllSubtopicAsync();
-            return Ok(subtopics);
+        {
+            try
+            {
+                var subtopics = await _subtopicService.GetAllSubtopicAsync();
 
+                return Ok(subtopics);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSubtopicoById(int id)
         {
-           
-           var subtopic = await _subtopicService.GetSubtopicById(id);
-            if (subtopic == null) return NotFound("Subtopic id not found!");
+            try
+            {
+                var subtopic = await _subtopicService.GetSubtopicById(id);
+                if (subtopic == null) return NotFound("Subtopic id not found!");
 
-            return Ok(subtopic);
-            
+                return Ok(subtopic);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }        
         }
 
         [HttpGet("Course/{id}")]
         public async Task<ActionResult<IEnumerable<Subtopic>>> GetSubtopicByCourseId(int id)
         {
-            var subtopics = await _subtopicService.GetSubtopicByCourseId(id);
-            if (subtopics == null) return NotFound("Course id not found!");
-            return Ok(subtopics);
+            try
+            {
+                var subtopics = await _subtopicService.GetSubtopicByCourseId(id);
+                if (subtopics == null) return NotFound("Course id not found!");
 
+                return Ok(subtopics);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

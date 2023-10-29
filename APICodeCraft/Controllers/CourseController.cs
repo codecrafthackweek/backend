@@ -19,8 +19,16 @@ namespace APICodeCraft.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Course>>> GetAllCourse()
         {
-            var courses = await _courseService.GetAllCourseAsync();
-            return Ok(courses);
+            try
+            {
+                var courses = await _courseService.GetAllCourseAsync();
+
+                return Ok(courses);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
