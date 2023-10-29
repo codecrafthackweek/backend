@@ -19,7 +19,11 @@ builder.Services.AddScoped<ISubtopicService, SubtopicService>();
 builder.Services.AddScoped<IContentService, ContentService>();
 builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<IQuizService, QuizService>();
-
+builder.Services.AddCors(options => options.AddPolicy(name: "OpenCors",
+    policy =>
+    {
+        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    }));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,7 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("OpenCors");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
